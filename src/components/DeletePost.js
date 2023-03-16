@@ -54,7 +54,7 @@ const DeletePost = (props) => {
     return ( 
         <section> 
                 {
-                    things && things.length ? things.map((singleThingsElement) => {
+                    things.length ? things.map((singleThingsElement) => {
                         return ( 
                             <div key={singleThingsElement.id}> 
                                 <p> Title: {singleThingsElement.title} </p>
