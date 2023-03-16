@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { useState } from "react"
 import './style.css'; 
 
-import { UserRegister, UserLogin, UserMe, GetPosts, PostPosts, AllThingsList }  from "./components";
+import { UserRegister, UserLogin, UserMe, GetPosts, PostPosts, AllThingsList, DeletePost }  from "./components";
 
 const App = () => {
     //make some state for login 
@@ -23,6 +23,7 @@ const App = () => {
                                 <Link to="/login"> Login To Account </Link>
                                 {/* <Link to="/userme"> User Information </Link> */}
                                 <Link to="/createposts"> Make A Post</Link>
+                                <Link to="/deletepost"> Delete Your Post</Link>
                             </section>
                         )
                     }
@@ -32,8 +33,9 @@ const App = () => {
                 <Routes>
                     <Route path="/register" element={<UserRegister isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
                     <Route path="/login" element={<UserLogin/>} />
+                    <Route path="/deletepost" element={<DeletePost isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>} />
                     <Route path="/posts" element={<GetPosts setAllThings={setAllThings}/>} />
-                    <Route path="/post" element={<AllThingsList thingsProps={allThings}/>} />
+                    <Route path="/post" element={<AllThingsList thingsProps={setAllThings}/>} />
                     <Route path="/createposts" element={<PostPosts isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/> } />
                     <Route path="/userme" element={<UserMe isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> } />
                 </Routes>
