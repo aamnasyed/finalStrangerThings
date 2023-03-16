@@ -3,7 +3,19 @@ const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
 
 const DeletePost = (props) => {
 
-    const { title}
+    const { things, setTitle, setPrice, setDiscription, setLocation, setPost } = props;
+
+    useEffect(() => {
+        console.log(localStorage.getItem("token"))
+        if (localStorage.getItem("token")) {
+            props.setIsLoggedIn(true)
+            console.log("this is working")
+        } else {
+            props.setIsLoggedIn(false);
+            console.log("no token exists")
+        }
+    }, []);
+
     const deletePost = async () => {
         try {
             const response = await fetch(`${BASE_URL}/posts/_id`, {
@@ -15,30 +27,36 @@ const DeletePost = (props) => {
             });
             const result = await response.json(); 
             console.log(result);
-            return result
+
+            if (resultResponse.success) {
+                let filteredThings = things.filter((singleThingsElement) => {
+                    if (singleThingsElement.id != event.target.value) {
+                        return singleThingsElement
+                    }
+                })
+                setPost(filteredThings)
+            }
+            // return result
         } catch (error) {
             console.log(error)
+        
         }
     }
 
-    if (result.success) {
-        let filteredThings
-    }
-
-
-
-
-
-                <form>
-                    {/* <input
+    return ( 
+        <section> 
+              <form>
+                    <input
                         type="text"
                         placeholder="what you want to delete??"
                         onChangeEvent={(event) => {
-                            ...(event.target.value)
+                            setPost(event.target.value)
                         }}
-                    />  */}
+                    /> 
 
                 <button type="submit"> Submit </button>    
                 </form> 
+        </section>
+    )
 
 }

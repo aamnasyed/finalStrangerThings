@@ -13,7 +13,9 @@ const SingleThings = (props) => {
             <p> Name: {mySelectedThing.name} </p>
 
             <p> API Url for specific data: {mySelectedThing.url} </p>
+                
         </div>
+    //double check it is url and not something else... 
     )
 
 }
