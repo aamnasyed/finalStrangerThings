@@ -2,14 +2,17 @@ const COHORT_NAME = '2301-FTB-MT-WEB-FT';
 const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
 
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"
 
-const PostPosts = (props) => {
+const CreatePosts = (props) => {
     const [createPost, setCreatePost] = useState({});
     const [ title, setTitle ] = useState("")
     const [ description, setDescription ] = useState("")
     const [ price, setPrice ] = useState("")
     const [ location, setLocation ] = useState("") 
     console.log(props)
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         console.log(localStorage.getItem("token"))
@@ -29,7 +32,11 @@ const PostPosts = (props) => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json", 
-                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`,
+
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "DELETE, POST, GET, OPTIONS",
+                    "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With"
                 },
                 body: JSON.stringify({
                     post: {
@@ -43,6 +50,7 @@ const PostPosts = (props) => {
             const result = await response.json(); 
             console.log(result); 
             setCreatePost(result);
+            navigate("/posts")
         } catch (error) {
             console.log(error);
         }
@@ -80,4 +88,4 @@ const PostPosts = (props) => {
     );
 };
 
-export default PostPosts;
+export default CreatePosts

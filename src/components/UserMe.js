@@ -1,7 +1,7 @@
 const COHORT_NAME = '2301-FTB-MT-WEB-FT'
 const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`
 
-import React from "react"
+// import React from "react"
 import { useEffect, useState } from "react";
 
 const UserMe = (props) => {
@@ -27,33 +27,31 @@ const UserMe = (props) => {
 
         async function fetchingData () {
             try {
-                const response = await fetch (`${BASE_URL}/users/me`, {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${localStorage.getItem("token")}`
-                    },
-                    body: JSON.stringify({
-                        myData:{
-                            post: myPosts,
-                            messages: myMessages,
-                            id: myId, 
-                            username: myUsername
+            const response = await fetch (`${BASE_URL}/users/me`, {
+                headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify({
+                myData:{
+                    post: myPosts,
+                    messages: myMessages,
+                    id: myId, 
+                    username: myUsername
+                }
+            })
+        })
+            //am i missing something here
 
-                        }
-
-                    })
-                })
-                //am i missing something here
-
-                const result = await response.json();
-                console.log("Below is our personal account data:")
-                console.log(result)
-                setMyData(translatedData.data)
-            }   catch (error) {
-                    console.log(error);
-            }
-            }
-    }, [])
+            const result = await response.json();
+            console.log("Below is our personal account data:")
+            console.log(result)
+            setMyData(translatedData.data)
+        }   catch (error) {
+                console.log(error);
+        }
+        }
+}, [])
 // [] ==> is this for the mounthing phase? make sure to look it up later
     return (
         <div> 

@@ -74,7 +74,7 @@ const UserRegister = () => {
           value={newPassword}
           onChange={(event) => setNewPassword(event.target.value)}
         />
-        <button type="submit">Create Account</button>
+        <button type="submit"> Create Account</button>
       </form>
     </section>
   )

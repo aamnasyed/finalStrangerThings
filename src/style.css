@@ -1,3 +1,24 @@
 *{ 
     background-color: lavender;
 }
+
+.navBar {
+    display: flex;
+    justify-content: space-between;  
+}
+
+.navBar2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+#deleteButton{ 
+    display: flex;
+    flex: end;
+}
+
+/* .profileInfo {
+    display: flex;
+    justify-content: center;
+    border: solid blue;
+} */

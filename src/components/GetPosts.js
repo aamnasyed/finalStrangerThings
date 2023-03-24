@@ -1,42 +1,31 @@
+import { useState, useEffect } from "react"
+import { AllThingsList } from "./index.js"
+
 const COHORT_NAME = '2301-FTB-MT-WEB-FT'
 const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`
 
-import { useState, useEffect } from "react";
-
 const GetPosts = () => {
-    const [ strangeThings, setStrangeThings ] = useState([])
+    const [strangeThings, setStrangeThings] = useState([])
 
-    useEffect (() => {
-
-        const fetchStrangeThings = async () => {
+    useEffect(() => {
+        const fetchPosts = async () => {
             try {
-                const response = await fetch (`${BASE_URL}/posts`) 
-                
-                const translatedData = await response.json();
-
-                const actualStrangeThingsData = translatedData.data.posts;
-                console.log(actualStrangeThingsData)
-                setStrangeThings(actualStrangeThingsData);
-                
+                const response = await fetch(`${BASE_URL}/posts`)
+                const result = await response.json()
+                const actualStrangeThingsData = result.data.posts
+                setStrangeThings(actualStrangeThingsData)
             } catch (error) {
                 console.log(error)
-            }      
-        }
-        fetchStrangeThings();
-}, [])
+            }
+        } 
+        fetchPosts()
+    }, [])
+   
 
     return (
         <div>
-        { 
-            strangeThings.length ? strangeThings.map((singleStrangeThingsElement, idx) => {
-                return (
-                    <div key={idx}>
-                        <h2> {singleStrangeThingsElement.title} </h2>
-                    </div>
-                )
-            }) : <div> No Data Available </div>
-      }
-    </div>
+            <AllThingsList thingsProps={strangeThings}/>
+        </div>
     )
 }
 

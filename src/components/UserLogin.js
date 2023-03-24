@@ -1,12 +1,11 @@
 const COHORT_NAME = '2301-FTB-MT-WEB-FT'
 const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`
 
-import React from "react"
+// import React from "react"
 import { useState } from "react";
 import {useNavigate } from "react-router-dom"
 
 const UserLogin = (props) => {
-    // const [ myData, setMyData ] = useState({});
     const [ myUsername, setMyUsername] = useState ("");
     const [ myPassword, setMyPassword] = useState ("");
 
@@ -69,4 +68,3 @@ const UserLogin = (props) => {
 }
 
 export default UserLogin
-
